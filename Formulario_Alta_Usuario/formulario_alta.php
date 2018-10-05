@@ -41,10 +41,11 @@
             $error_edad = "Edad incorrecta, debe estar entre 18 y 150";
         else $edad_valida = true;
         
-        if (!comprobarAvatar($_FILES["Avatar"]["name"]) || $_FILES["Avatar"]["size"] > 256*1024)
+        if (!comprobarAvatar($_FILES["Avatar"]["name"]) && $_FILES["Avatar"]["size"] > 256*1024)
             $error_avatar="Formato de imagen tiene que ser JPG o PNG";
             else  {
-                move_uploaded_file($_FILES["avatar"]["tmp_name"], "avatares/");
+                $infoFile = [$nombre, $extension] = explode(".", $_FILES["Avatar"]["name"]);
+                move_uploaded_file($_FILES["Avatar"]["tmp_name"], "./avatares/" . $_POST['Alias'] . "." .$infoFile[1]);
                 $avatar_valido=true;
             }
         
@@ -64,7 +65,6 @@
 		<title>Formulario alta usuario</title>
 	</head>
 	<body>
-	
 		<h1>Formulario alta</h1>
 		<form action="<?php echo htmlspecialchars($_SERVE["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
 			<label>Alias: </label>
