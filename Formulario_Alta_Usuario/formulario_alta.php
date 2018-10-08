@@ -66,7 +66,7 @@
 	</head>
 	<body>
 		<h1>Formulario alta</h1>
-		<form action="<?php echo htmlspecialchars($_SERVE["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
+		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
 			<label>Alias: </label>
 			<input name = "Alias" type="text" value="<?php echo $alias; ?>" required /> <span style="color:red;"><?php echo "$error_alias"?></span>
 			<br>
