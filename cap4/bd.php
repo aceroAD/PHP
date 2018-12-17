@@ -32,7 +32,7 @@ function comprobar_usuario($nombre, $clave){
 	}
 }
 function cargar_categorias(){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+    $res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	$ins = "select codCat, nombre from categoria";
 	$resul = $bd->query($ins);	
