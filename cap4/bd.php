@@ -20,7 +20,7 @@ function leer_config($nombre, $esquema){
 	return $resul;
 }
 function comprobar_usuario($nombre, $clave){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	$ins = "select codRes, correo from restaurantes where correo = '$nombre' 
 			and clave = '$clave'";
@@ -46,7 +46,7 @@ function cargar_categorias(){
 	return $resul;	
 }
 function cargar_categoria($codCat){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	$ins = "select nombre, descripcion from categoria where codcat = $codCat";
 	$resul = $bd->query($ins);	
@@ -60,7 +60,7 @@ function cargar_categoria($codCat){
 	return $resul->fetch();	
 }
 function cargar_productos_categoria($codCat){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	
 	// Realizar una consulta SQL
@@ -78,7 +78,7 @@ function cargar_productos_categoria($codCat){
 // recibe un array de códigos de productos
 // devuelve un cursor con los datos de esos productos
 function cargar_productos($codigosProductos){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	$texto_in = implode(",", $codigosProductos);
 	$ins = "select * from productos where codProd in($texto_in)";
@@ -89,7 +89,7 @@ function cargar_productos($codigosProductos){
 	return $resul;	
 }
 function insertar_pedido($carrito, $codRes){
-	$res = leer_config("configuracion.xml", "configuracion.xsd");
+	$res = leer_config(dirname(__FILE__) . "/configuracion.xml", dirname(__FILE__) . "/configuracion.xsd");
 	$bd = new PDO($res[0], $res[1], $res[2]);
 	$bd->beginTransaction();
 	//revisar tiempo

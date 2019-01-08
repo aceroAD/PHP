@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<categorias>
+  <categoria>
+    <codCat>3</codCat>
+    <nombre>Bebidas con</nombre>
+  </categoria>
+  <categoria>
+    <codCat>2</codCat>
+    <nombre>Bedidas sin</nombre>
+  </categoria>
+  <categoria>
+    <codCat>1</codCat>
+    <nombre>Comida</nombre>
+  </categoria>
+</categorias>
