@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
    @ORM\Entity(repositoryClass="EquipoRepository")
 */
 class Equipo{
-    /** @ORM\Id @ORM\Column(type="integer") @ORM\GeneratedValue **/
+    /** @ORM\Id @ORM\Column(type="integer") 
+     * @ORM\GeneratedValue **/
     private $id;
     /** @ORM\Column(type="string") **/
     private $nombre;
