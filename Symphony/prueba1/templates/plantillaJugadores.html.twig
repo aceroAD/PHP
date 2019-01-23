@@ -1,0 +1,19 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Plantilla num symfony</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            
+                {% for jugador in jugadores %}
+            <tr>
+                <td>{{jugador.nombre}}</td>
+            </tr>
+                {% endfor %}
+        </table>
+    </body>
+</html>

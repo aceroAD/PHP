@@ -25,5 +25,16 @@ class EjemploPlantillas extends AbstractController{
 		
 		return $this->render('tabla.html.twig', array ( 'filas' => $filas));
 	 }
+    
+     /**
+     * @Route("/numero/{numero}", name="numero")
+     */
+     public function imprimirNumero($numero) {
+         $error = false;
+         if($numero < 0)
+             $error = true;
+         return $this->render('plantillanumero.html.twig', array('numero' => $numero, 'error' => $error));
+     }
+     
 	 
 }

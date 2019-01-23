@@ -1,0 +1,17 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>Plantilla num symfony</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tr>
+                {% for jugador in jugadores %}
+                <td>{{jugador.nombre}}</td>
+            </tr>
+        </table>
+    </body>
+</html>

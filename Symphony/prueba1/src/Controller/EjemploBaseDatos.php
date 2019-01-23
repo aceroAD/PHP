@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 use App\Entity\Equipo;
+use App\Entity\Jugador;
 class EjemploBaseDatos extends AbstractController{
 	 /**
      * @Route("/mostrar_equipo")	 
@@ -28,4 +29,28 @@ class EjemploBaseDatos extends AbstractController{
 		return new Response('<html><body>Enviado</body></html>');
 	
 	 }
+    
+    /**
+    * @Route("/equipos/{codigo}")
+    **/
+    public function equipo_por_codigo($codigo) {
+        $entityManager = $this->getDoctrine()->getManager();
+        $query= $entityManager->find(Equipo::class, $codigo);
+        $nombre = $query->getNombre();
+        $ciudad = $query->getCiudad();
+        $fundacion = $query->getFundacion();
+        $socios = $query->getSocios();
+        
+        return new Response('<html><body>'. '<p>' . $nombre .'<p><br>'. '<p>' . $ciudad .'<p><br>'. '<p>' . $fundacion .'<p><br>'. '<p>' . $socios .'<p><br>'. '</body></html>');
+    }
+    
+    /**
+    * @Route("/tablaJugadores")
+    **/
+    public function tabla_jugadores() {
+        $entityManager = $this->getDoctrine()->getManager();
+        $query = $entityManager->getRepository(Jugador::class)->findAll();
+        
+        return $this->render('plantillaJugadores.html.twig', array('jugadores'=> $query));
+    }
 }
