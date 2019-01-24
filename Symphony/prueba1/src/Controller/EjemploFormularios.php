@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle;
 
 class EjemploFormularios extends AbstractController
 {
@@ -33,4 +35,33 @@ class EjemploFormularios extends AbstractController
         'form' => $form->createView(),
 		));
 	} 
+    
+    /**
+    *  @Route("/formularioCorreo", name="formuCorreo")
+    */
+    
+    public function formularioCorreo(Request $request, \Swift_Mailer $mailer) {
+        $form = $this->createFormBuilder()
+            ->add("Destinatario", EmailType::class)
+            ->add("Cuerpo", TextType::class)
+            ->add('Enviar', SubmitType::class, array('label' => 'Enviar'))
+            ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $datos = $form->getData();
+            $destinatario = $datos['Destinatario'];
+            $cuerpo = $datos['Cuerpo'];
+            
+            $message = new \Swift_Message();
+            $message->setFrom('diegoacero.inef@gmail.com');
+            $message->setTo($destinatario);
+            $message->setBody($cuerpo);
+            $mailer->send($message);	
+            return new Response('<html><body>Enviado</body></html>');
+        }
+        
+        return $this->render('formularioCorreo.html.twig', array('form' => $form->createView()));
+    }
 }
