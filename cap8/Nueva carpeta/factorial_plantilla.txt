@@ -1,0 +1,16 @@
+	/** Actividad 8.3
+     * @Route("/factorialPlantilla/{num}", name="factorialPlantilla")
+     */
+    public function factorialPlantilla($num){		
+		$error = FALSE;
+		$resul = 1;
+        if(is_numeric($num) and $num >= 0){			
+			for($i=2; $i <= $num; $i++){
+				$resul = $resul * $i;
+			}						
+		}else{
+			$error = TRUE;			
+		}		
+		return $this->render('factorial.html.twig', 
+		array ('error' => $error, 'resul' => $resul));
+	}

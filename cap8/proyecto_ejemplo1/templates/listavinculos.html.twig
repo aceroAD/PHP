@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lista</title>        
+    </head>
+    <body>
+		<ul>
+			<li><a href = "{{ path('tabla') }}">Probar tabla</a></li>
+			<li><a href = "{{ path('saludo', {'nombre': "Paco"}) }}">Probar saludo</a></li>
+			<li><a href = "{{ path('positivo', {'num': "6"}) }}">Probar positivo</a></li>
+		</ul>
+    </body>
+</html>

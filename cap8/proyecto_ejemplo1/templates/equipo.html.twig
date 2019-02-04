@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Equipo</title>        
+    </head>
+    <body>
+        {% if error %}
+			Equipo no encontrado
+        {% else %}
+			Nombre: {{ equipo.nombre}}<br>
+			Fundación: {{ equipo.fundacion}}<br>
+			Socios:  {{ equipo.socios}}<br>
+			Ciudad: {{ equipo.ciudad}}<br>
+        {%endif%}
+    </body>
+</html>
